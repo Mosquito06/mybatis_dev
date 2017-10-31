@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.dgit.mabatis_dev.dao.StudentDao">
+<mapper namespace="kr.or.dgit.mybatis_dev.dao.StudentDao">
 	<!-- 동일하게 사용될 구문은 sql 태그를 사용해 미리 정의해 둘 수 있음 -->
 	<sql id="selectSql">
-		select select stud_id, name, email, phone from students
+		select stud_id, name, email, phone from students
 	</sql>
 	<!-- <sql id="whereSql">
 		<where>
