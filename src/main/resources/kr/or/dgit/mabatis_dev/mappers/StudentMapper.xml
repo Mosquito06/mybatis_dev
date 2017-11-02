@@ -65,4 +65,50 @@
 	<delete id="deleteStudentWithAPI">
 		<include refid="deleteSql"></include>
 	</delete>
+	
+	
+	<!-- resultMap을 이용하는 방법 -->
+	<resultMap id="StudentResult" type="Student">
+		<id property="studId" column="stud_Id"/>
+		<id property="name" column="name"/>
+		<id property="email" column="email"/>
+		<id property="phone" column="phone"/>
+		<id property="dob" column="dob"/>
+	</resultMap>
+	
+	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
+		<include refid="selectSql"></include>
+	</select>
+	<select id="selectStudentByAllForResultMapWithAPI" resultMap="StudentResult">
+		<include refid="selectSql"></include>
+	</select>
+	
+	<select id="selectStudentByAllForHashMap" resultType="map">
+		<include refid="selectSql"></include>
+	</select>
+	<select id="selectStudentByAllForHashMapWithAPI" resultType="map">
+		<include refid="selectSql"></include>
+	</select>
+	
+	<!-- typeHandlers를 사용하지 않고 MyBatis에게 새로 작성된 Address 클래스를 인식시키는 방법 -->
+	<resultMap id="StudentWithAddressResult" type="Student" extends="StudentResult">
+		<result property="address.addrId" column="addr_id"/>
+		<result property="address.street" column="street"/>
+		<result property="address.city" column="city"/>
+		<result property="address.state" column="state"/>
+		<result property="address.zip" column="zip"/>
+		<result property="address.country" column="country"/>
+	</resultMap>
+	
+	<sql id="selectJoinAddressSql">
+		select stud_id, name, email, phone, a.addr_id, street, city, state, zip, country from students s 
+		left outer join addresses a on s.addr_id = a.addr_id
+	</sql>
+	
+	<select id="selectStudentByNoForResultMapExtends" parameterType="Student" resultMap="StudentWithAddressResult">
+		<include refid="selectJoinAddressSql" /> where stud_id = #{studId}
+	</select>
+	<select id="selectStudentByNoForResultMapExtendsWithAPI" parameterType="Student" resultMap="StudentWithAddressResult">
+		<include refid="selectJoinAddressSql" /> where stud_id = #{studId}
+	</select>
 </mapper>

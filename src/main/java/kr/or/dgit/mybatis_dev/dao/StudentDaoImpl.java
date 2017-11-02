@@ -1,6 +1,7 @@
 package kr.or.dgit.mybatis_dev.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -95,6 +96,48 @@ public class StudentDaoImpl implements StudentDao {
 	public int deleteStudentWithAPI(int id) {
 		Log.debug("deleteStudentWithAPI()");
 		return sqlSession.delete(namespace + ".deleteStudentWithAPI", id);
+	}
+
+
+	@Override
+	public List<Student> selectStudentByAllForResultMap() {
+		Log.debug("selectStudentByAllForResultMap()");
+		return sqlSession.getMapper(StudentDao.class).selectStudentByAllForResultMap();
+	}
+
+
+	@Override
+	public List<Student> selectStudentByAllForResultMapWithAPI() {
+		Log.debug("selectStudentByAllForResultMapWithAPI()");
+		return sqlSession.selectList(namespace + ".selectStudentByAllForResultMap");
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectStudentByAllForHashMap() {
+		Log.debug("selectStudentByAllForHashMap()");
+		return sqlSession.getMapper(StudentDao.class).selectStudentByAllForHashMap();
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectStudentByAllForHashMapWithAPI() {
+		Log.debug("selectStudentByAllForHashMapWithAPI()");
+		return sqlSession.selectList(namespace + ".selectStudentByAllForHashMapWithAPI");
+	}
+
+
+	@Override
+	public Student selectStudentByNoForResultMapExtends(Student student) {
+		Log.debug("selectStudentByNoForResultMapExtends()");
+		return sqlSession.getMapper(StudentDao.class).selectStudentByNoForResultMapExtends(student);
+	}
+
+
+	@Override
+	public Student selectStudentByNoForResultMapExtendsWithAPI(Student student) {
+		Log.debug("selectStudentByNoForResultMapExtendsWithAPI()");
+		return sqlSession.selectOne(namespace + ".selectStudentByNoForResultMapExtendsWithAPI", student);
 	}
 
 }

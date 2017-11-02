@@ -1,7 +1,7 @@
 package kr.or.dgit.mybatis_dev.service;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -10,7 +10,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import kr.or.dgit.mybatis_dev.dto.PhoneNumber;
 import kr.or.dgit.mybatis_dev.dto.Student;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -27,7 +26,7 @@ public class TestStudentService {
 		StudentService = null;
 	}
 
-	@Test
+	/*@Test
 	public void test1FindStudentByNo() {
 		Student std = new Student(); 
 		std.setStudId(1);
@@ -53,7 +52,7 @@ public class TestStudentService {
 	public void test4FindStudentByAllWithAPI() {
 		List<Student> findeStudent = StudentService.findStudentByAllWithAPI();
 		Assert.assertNotNull(findeStudent);
-	}
+	}*/
 	
 	/*@Test
 	public void test5InsertStudent() {
@@ -115,7 +114,7 @@ public class TestStudentService {
 		Assert.assertEquals(1, res);
 	}*/
 	
-	@Test
+	/*@Test
 	public void test10DeleteStudent() {
 		int id = 4;
 		int res = StudentService.deleteStudent(id);
@@ -127,7 +126,33 @@ public class TestStudentService {
 		int id = 5;
 		int res = StudentService.deleteStudentWithAPI(id);
 		Assert.assertEquals(1, res);
-	}
+	}*/
 
+	@Test
+	public void test12SelectStudentByAllForResultMap() {
+		List<Student> lists = StudentService.findStudentByAllForResultMap();
+		List<Student> listsAPI = StudentService.findStudentByAllForResultMapWithAPI();
+		Assert.assertEquals(lists.size(), listsAPI.size());
+	}
+	
+	@Test
+	public void test13SelectStudentByAllForHashMap() {
+		List<Map<String, Object>> lists = StudentService.findStudentByAllForHashMap();
+		List<Map<String, Object>> listsAPI = StudentService.findStudentByAllForHashMapWithAPI();
+		Assert.assertEquals(lists.size(), listsAPI.size());
+	}
+	
+	@Test
+	public void test14SelectStudentByNoForResultMapExtends() {
+		Student std1 = new Student();
+		std1.setStudId(1);
+		
+		Student std2 = new Student();
+		std2.setStudId(1);
+		
+		Student fstd1 = StudentService.findStudentByNoForResultMapExtends(std1);
+		Student fstd2 = StudentService.findStudentByNoForResultMapExtendsWithAPI(std1);
+		Assert.assertEquals(fstd1.getStudId(), fstd2.getStudId());
+	}
 
 }
