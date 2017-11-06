@@ -128,7 +128,7 @@ public class TestStudentService {
 		Assert.assertEquals(1, res);
 	}*/
 
-	@Test
+	/*@Test
 	public void test12SelectStudentByAllForResultMap() {
 		List<Student> lists = StudentService.findStudentByAllForResultMap();
 		List<Student> listsAPI = StudentService.findStudentByAllForResultMapWithAPI();
@@ -152,6 +152,19 @@ public class TestStudentService {
 		
 		Student fstd1 = StudentService.findStudentByNoForResultMapExtends(std1);
 		Student fstd2 = StudentService.findStudentByNoForResultMapExtendsWithAPI(std1);
+		Assert.assertEquals(fstd1.getStudId(), fstd2.getStudId());
+	}*/
+	
+	@Test
+	public void test15SelectStudentByNoAssociation() {
+		Student std1 = new Student();
+		std1.setStudId(1);
+		
+		Student std2 = new Student();
+		std2.setStudId(1);
+		
+		Student fstd1 = StudentService.findStudentByNoAssociation(std1);
+		Student fstd2 = StudentService.findStudentByNoAssociationWithAPI(std2);
 		Assert.assertEquals(fstd1.getStudId(), fstd2.getStudId());
 	}
 

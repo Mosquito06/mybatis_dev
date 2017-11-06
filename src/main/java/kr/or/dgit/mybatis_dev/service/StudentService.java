@@ -148,4 +148,18 @@ public class StudentService {
 		}
 	}
 	
+	public Student findStudentByNoAssociation(Student student) {
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			return dao.selectStudentByNoAssociation(student);
+		}
+	}
+	
+	public Student findStudentByNoAssociationWithAPI(Student student) {
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			return dao.selectStudentByNoAssociationWithAPI(student);
+		}
+	}
+	
 }

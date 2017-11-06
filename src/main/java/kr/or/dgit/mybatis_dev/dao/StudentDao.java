@@ -30,4 +30,7 @@ public interface StudentDao {
 
 	Student selectStudentByNoForResultMapExtends(Student student);
 	Student selectStudentByNoForResultMapExtendsWithAPI(Student student);
+	
+	Student selectStudentByNoAssociation(Student student);
+	Student selectStudentByNoAssociationWithAPI(Student student);
 }

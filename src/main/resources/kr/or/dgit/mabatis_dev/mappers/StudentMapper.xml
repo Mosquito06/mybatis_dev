@@ -111,4 +111,16 @@
 	<select id="selectStudentByNoForResultMapExtendsWithAPI" parameterType="Student" resultMap="StudentWithAddressResult">
 		<include refid="selectJoinAddressSql" /> where stud_id = #{studId}
 	</select>
+	
+	<resultMap type="Student" id="StudentAssociation" extends="StudentResult">
+		<association property="address" resultMap="kr.or.dgit.mybatis_dev.dao.AddressDao.AddressResult" />
+	</resultMap>
+	
+	<select id="selectStudentByNoAssociation" parameterType="Student" resultMap="StudentAssociation">
+		<include refid="selectJoinAddressSql" /> where stud_id = #{studId}
+	</select>
+	
+	<select id="selectStudentByNoAssociationWithAPI" parameterType="Student" resultMap="StudentAssociation">
+		<include refid="selectJoinAddressSql" /> where stud_id = #{studId}
+	</select>
 </mapper>
