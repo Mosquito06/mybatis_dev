@@ -33,4 +33,7 @@ public interface StudentDao {
 	
 	Student selectStudentByNoAssociation(Student student);
 	Student selectStudentByNoAssociationWithAPI(Student student);
+	
+	int insertEnumStudent(Student student);
+	int insertEnumStudentWithAPI(Student student);
 }

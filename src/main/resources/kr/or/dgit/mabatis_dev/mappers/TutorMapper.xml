@@ -5,11 +5,12 @@
 		<id property="tutorId" column="tutor_id"/>	
 		<result property="name" column="tutor_name"/>
 		<result property="email" column="email"/>
+		<association property="address" resultMap="kr.or.dgit.mybatis_dev.dao.AddressDao.AddressResult"/>
 		<collection property="courses" resultMap="kr.or.dgit.mybatis_dev.dao.CourseDao.CourseResult"/>
 	</resultMap>
 	
 	<sql id="selectSql">
-		select t.tutor_id, t.name as tutor_name, email, c.course_id, c.name, description, start_date, end_date 
+		select t.tutor_id, t.name as tutor_name, email, c.course_id, c.name, description, start_date, end_date, a.addr_id, a.street, a.city, a.state, a.zip, a.country 
 		from tutors t left outer join addresses a on t.addr_id = a.addr_id left outer join courses c on t.tutor_id = c.tutor_id
 	</sql>
 	<sql id="whereSql">
@@ -26,7 +27,7 @@
 	</select>
 	
 	<select id="selectTutorById" parameterType="Tutor" resultMap="TutorResult">
-		select t.tutor_id, t.name as tutor_name, email, c.course_id, c.name, description, start_date, end_date from tutors t left outer join 
-		addresses a on t.addr_id = a.addr_id left outer join courses c on t.tutor_id = c.tutor_id where t.tutor_id = #{tutorId};
+		select t.tutor_id, t.name as tutor_name, email, c.course_id, c.name, description, start_date, end_date, a.addr_id, a.street, a.city, a.state, a.zip, a.country 
+		from tutors t left outer join addresses a on t.addr_id = a.addr_id left outer join courses c on t.tutor_id = c.tutor_id where t.tutor_id = #{tutorId};
 	</select>
 </mapper>

@@ -162,4 +162,27 @@ public class StudentService {
 		}
 	}
 	
+	public int insertEnumStudent(Student student) {
+		int res = -1;
+
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			res = dao.insertEnumStudent(student);
+			sqlsession.commit();
+			return res;
+		}
+	}
+	
+	public int insertEnumStudentWithAPI(Student student) {
+		int res = -1;
+
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			res = dao.insertEnumStudentWithAPI(student);
+			sqlsession.commit();
+			return res;
+		}
+	}
+	
+	
 }

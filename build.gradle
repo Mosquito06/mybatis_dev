@@ -32,7 +32,7 @@ dependencies {
 
 jar{
     version = 1.0
- 	mainClassName='kr.or.dgit.mybatis_code.dao.test'
+ 	mainClassName='kr.or.dgit.mybatis_dev.dao.test'
 
 	baseName='test'
  	appendix='bin'

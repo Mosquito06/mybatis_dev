@@ -1,7 +1,8 @@
 package kr.or.dgit.mybatis_dev.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -10,6 +11,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import kr.or.dgit.mybatis_dev.dto.Gender;
+import kr.or.dgit.mybatis_dev.dto.PhoneNumber;
 import kr.or.dgit.mybatis_dev.dto.Student;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -155,7 +158,7 @@ public class TestStudentService {
 		Assert.assertEquals(fstd1.getStudId(), fstd2.getStudId());
 	}*/
 	
-	@Test
+	/*@Test
 	public void test15SelectStudentByNoAssociation() {
 		Student std1 = new Student();
 		std1.setStudId(1);
@@ -166,6 +169,34 @@ public class TestStudentService {
 		Student fstd1 = StudentService.findStudentByNoAssociation(std1);
 		Student fstd2 = StudentService.findStudentByNoAssociationWithAPI(std2);
 		Assert.assertEquals(fstd1.getStudId(), fstd2.getStudId());
+	}*/
+	
+	@Test
+	public void test16InsertEnumStudent() {
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 2, 28);
+		Student std = new Student(); 
+		std.setName("mosquito");
+		std.setEmail("mosquito@naver.com");
+		std.setPhone(new PhoneNumber("000-1111-2222"));
+		std.setDob(newDate.getTime());
+		std.setGender(Gender.FEMALE);
+		int res = StudentService.insertEnumStudent(std);
+		Assert.assertEquals(1, res);
+	}
+	
+	@Test
+	public void test17InsertEnumStudentWithAPI() {
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 3, 28);
+		Student std = new Student(); 
+		std.setName("mosquito2");
+		std.setEmail("mosquito2@naver.com");
+		std.setPhone(new PhoneNumber("000-3333-4444"));
+		std.setDob(newDate.getTime());
+		std.setGender(Gender.MALE);
+		int res = StudentService.insertEnumStudent(std);
+		Assert.assertEquals(1, res);
 	}
 
 }

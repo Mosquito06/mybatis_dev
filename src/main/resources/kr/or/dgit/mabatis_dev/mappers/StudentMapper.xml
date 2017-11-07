@@ -123,4 +123,17 @@
 	<select id="selectStudentByNoAssociationWithAPI" parameterType="Student" resultMap="StudentAssociation">
 		<include refid="selectJoinAddressSql" /> where stud_id = #{studId}
 	</select>
+	
+	<!-- enum 타입 -->
+	<sql id="insertEnumSql">
+		insert into students(stud_id, name, email, phone, dob, gender) values(#{studId}, #{name}, #{email}, #{phone}, #{dob}, #{gender})
+	</sql>
+	
+	<insert id="insertEnumStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="studId">
+		<include refid="insertEnumSql"></include>
+	</insert>
+	
+	<insert id="insertEnumStudentWithAPI" parameterType="Student" useGeneratedKeys="true" keyProperty="studId">
+		<include refid="insertEnumSql"></include>
+	</insert>
 </mapper>
