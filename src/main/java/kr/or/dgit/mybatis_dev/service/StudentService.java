@@ -184,5 +184,32 @@ public class StudentService {
 		}
 	}
 	
+	public Student findAllStudentByParam(String name, String email) {
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			return dao.selectAllStudentByParam(name, email);
+		}
+	}
+	
+	public Student findAllStudentByStudent(Student student) {
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			return dao.selectAllStudentByStudent(student);
+		}
+	}
+	
+	public Student findAllStudentByMap(Map<String, String> map) {
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			return dao.selectAllStudentByMap(map);
+		}
+	}
+	
+	public Map<Integer, String> findStudentForMap(){
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			return dao.selectStudentForMap();
+		}
+	}
 	
 }

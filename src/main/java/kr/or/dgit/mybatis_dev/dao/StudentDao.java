@@ -36,4 +36,10 @@ public interface StudentDao {
 	
 	int insertEnumStudent(Student student);
 	int insertEnumStudentWithAPI(Student student);
+	
+	Student selectAllStudentByParam(String name, String email);
+	Student selectAllStudentByStudent(Student student);
+	Student selectAllStudentByMap(Map<String, String> map);
+	
+	Map<Integer, String> selectStudentForMap();
 }

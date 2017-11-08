@@ -1,8 +1,7 @@
 package kr.or.dgit.mybatis_dev.service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -10,10 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
-import kr.or.dgit.mybatis_dev.dto.Gender;
-import kr.or.dgit.mybatis_dev.dto.PhoneNumber;
-import kr.or.dgit.mybatis_dev.dto.Student;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestStudentService {
@@ -171,7 +166,7 @@ public class TestStudentService {
 		Assert.assertEquals(fstd1.getStudId(), fstd2.getStudId());
 	}*/
 	
-	@Test
+	/*@Test
 	public void test16InsertEnumStudent() {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(1990, 2, 28);
@@ -197,6 +192,43 @@ public class TestStudentService {
 		std.setGender(Gender.MALE);
 		int res = StudentService.insertEnumStudent(std);
 		Assert.assertEquals(1, res);
+	}*/
+	
+	/*@Test
+	public void test18FindAllStudentByParam() {
+		Student findStudent = StudentService.findAllStudentByParam("Timothy", "timothy@gmail.com");
+		Assert.assertNotNull(findStudent);
+	}
+	
+	@Test
+	public void test19FindAllStudentByStudent() {
+		Student student = new Student();
+		student.setName("Timothy");
+		student.setEmail("timothy@gmail.com");
+		
+		Student findStudent = StudentService.findAllStudentByStudent(student);
+		Assert.assertNotNull(findStudent);
+	}
+	
+	@Test
+	public void test20FindAllStudentByMap() {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", "Timothy");
+		map.put("email", "timothy@gmail.com");
+		
+		Student findStudent = StudentService.findAllStudentByMap(map);
+		Assert.assertNotNull(findStudent);
+	}*/
+	
+	@Test
+	public void test21FindAllStudentForMap() {
+		Map<Integer, String> map = StudentService.findStudentForMap();
+		Assert.assertNotNull(map);
+	
+		
+		for(Entry<Integer, String> e : map.entrySet()) {
+			System.out.printf("key(%s) - value(%s)", e.getKey(), e.getValue());
+		}
 	}
 
 }
