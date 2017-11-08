@@ -139,7 +139,7 @@
 	
 	
 	<resultMap type="Student" id="StudentGenderResult" extends="StudentResult">
-		<result property="gender.gender" column="gender"/>
+		<result property="gender" column="gender"/>
 	</resultMap>
 	
 	<sql id="selectParameterSql">
