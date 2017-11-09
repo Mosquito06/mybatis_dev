@@ -42,4 +42,6 @@ public interface StudentDao {
 	Student selectAllStudentByMap(Map<String, String> map);
 	
 	Map<Integer, String> selectStudentForMap();
+	
+	int updateSetStudent(Student student);
 }

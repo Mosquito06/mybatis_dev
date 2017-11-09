@@ -212,4 +212,13 @@ public class StudentService {
 		}
 	}
 	
+	public int updateSetStudent(Student student){
+		try (SqlSession sqlsession = MyBatisSqlSessionFactory.getSqlSessionFactory().openSession()) {
+			StudentDao dao = new StudentDaoImpl(sqlsession);
+			int res = dao.updateSetStudent(student);
+			sqlsession.commit();
+			return res;
+		}
+	}
+	
 }
